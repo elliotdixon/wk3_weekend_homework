@@ -1,20 +1,32 @@
-DROP TABLE IF EXISTS tickets;
-DROP TABLE IF EXISTS films;
-DROP TABLE IF EXISTS customers;
+require_relative('../models/customer.rb')
+require_relative('../models/film.rb')
+require_relative('../models/ticket.rb')
 
-CREATE TABLE customers (
-  id SERIAL2 PRIMARY KEY,
-  name VARCHAR(255),
-  funds INT2
-);
 
-CREATE TABLE films (
-  id SERIAL2 PRIMARY KEY,
-  title VARCHAR(255)
-);
+require('pry')
 
-CREATE TABLE tickets (
-  id SERIAL2 PRIMARY KEY,
-  customer_id INT2 REFERENCES customers(id),
-  screening_id INT2 REFERENCES screenings(id)
-);
+
+customer1 = Customer.new({'name' => 'Elliot', 'funds' => 100})
+
+customer2 = Customer.new({'name' => 'Louise', 'funds' => 200})
+
+customer3 = Customer.new({'name' => 'Harrison', 'funds' => 300})
+
+customer4 = Customer.new({'name' => 'Zsolt', 'funds' => 400})
+
+film1 = Film.new({'title' => 'Pain and Gain'})
+
+film2 = Film.new({'title' => 'Wolf of Wall Street'})
+
+film3 = Film.new({'title' => 'Thor: Ragnarok'})
+
+film4 = Film.new({'title' => 'The Avengers: End Game'})
+
+
+ticket1 = customer1.buy_ticket(film1)
+ticket2 = customer2.buy_ticket(film2)
+ticket3 = customer3.buy_ticket(film3)
+ticket4 = customer4.buy_ticket(film4)
+
+binding.pry
+nil
